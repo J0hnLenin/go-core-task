@@ -34,7 +34,10 @@ func removeElement(s []int, ind int) ([]int, error) {
 	if ind >= len(s) {
 		return nil, fmt.Errorf("index %d out of range %d", ind, len(s))
 	}
-	return append(s[:ind], s[ind+1:]...), nil
+	newSlice := make([]int, ind, len(s)-1)
+	copy(newSlice, s[:ind])
+	newSlice = append(newSlice, s[ind+1:]...)
+	return newSlice, nil
 }
 
 func main() {
